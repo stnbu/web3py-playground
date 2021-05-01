@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# 7c7fb042692bd4e82d79b2db5d7bda5f562a5d268dab66fc6c620646b993ba3d
+
+
 import os
 import os
 import sys
@@ -12,12 +15,12 @@ from web3 import Web3
 from solcx import compile_source
 from web3.middleware import geth_poa_middleware
 
-def get_rinkeyb_test_account():
+def get_goerli_test_account():
    return Account.from_key(os.getenv('PRIVATE_KEY'))
 
-def get_rinkeyb_test_web3():
-   ipc = os.path.expanduser("~/.ethereum/rinkeby/geth.ipc")
-   os.environ['SOLC_BINARY'] = "solcjs"
+def get_goerli_test_web3():
+   ipc = os.path.expanduser(os.path.expanduser("~/.ethereum/goerli/geth.ipc"))
+   #os.environ['SOLC_BINARY'] = "solcjs"
    w3 = Web3(Web3.IPCProvider(ipc))
    w3.middleware_onion.inject(geth_poa_middleware, layer=0) # required when using a test network
    return w3
